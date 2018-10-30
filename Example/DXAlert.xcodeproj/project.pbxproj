@@ -246,6 +246,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = douglas525264;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = B6H7GPKGQJ;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -465,7 +468,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 710684FB2A72F2F7B3A5DEA7 /* Pods-DXAlert_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6H7GPKGQJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DXAlert/DXAlert-Prefix.pch";
 				INFOPLIST_FILE = "DXAlert/DXAlert-Info.plist";
@@ -480,7 +485,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E7660295171664087FC2145 /* Pods-DXAlert_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6H7GPKGQJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DXAlert/DXAlert-Prefix.pch";
 				INFOPLIST_FILE = "DXAlert/DXAlert-Info.plist";
