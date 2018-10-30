@@ -1,0 +1,6 @@
+framework module DXAlert {
+  umbrella header "DXAlert-umbrella.h"
+
+  export *
+  module * { export * }
+}

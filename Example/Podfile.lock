@@ -1,0 +1,49 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - DXAlert (0.1.0):
+    - AFNetworking (~> 3.1.0)
+    - JPush
+    - Masonry
+  - JCore (1.1.7)
+  - JPush (3.0.8):
+    - JCore (~> 1.1.7)
+  - Masonry (1.1.0)
+
+DEPENDENCIES:
+  - DXAlert (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - JCore
+    - JPush
+    - Masonry
+
+EXTERNAL SOURCES:
+  DXAlert:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  DXAlert: 056c6dc1c304d7644f94e3bddbdea62944545c98
+  JCore: f7459c81c135281a874a6beafdd321666adcc834
+  JPush: 9574d072cc37e93fa293ba69b43ce763c440943a
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+
+PODFILE CHECKSUM: bca8368a1c852a66d1990e7f5e8b3ab0830d0cc8
+
+COCOAPODS: 1.5.3
