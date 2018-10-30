@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DXAlert_Example' do
+  pod 'DXAlert', :path => '../'
+
+  target 'DXAlert_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
