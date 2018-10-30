@@ -129,8 +129,7 @@ static ADManager *adm;
         [self.manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
             __strong ADManager *strongSelf = weakSelf;
             
-            if (status != strongSelf.currentState && (status == AFNetworkReachabilityStatusReachableViaWWAN|| status == AFNetworkReachabilityStatusReachableViaWiFi) ) {
-                strongSelf.currentState = status;
+            if ((status == AFNetworkReachabilityStatusReachableViaWWAN|| status == AFNetworkReachabilityStatusReachableViaWiFi) ) {
                 [strongSelf realLoad];
             }
         }];
