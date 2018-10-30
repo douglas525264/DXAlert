@@ -42,7 +42,7 @@
     }
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[_loadURL componentsSeparatedByString:@" "] componentsJoinedByString:@""]]]];
-
+    
     [self.view addSubview:self.progressView];
     [self.view addSubview:self.toolBar];
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
@@ -106,7 +106,7 @@
     }else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
-
+    
 }
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
     
@@ -120,32 +120,32 @@
                                          cancelButtonTitle:@"确定"
                                          otherButtonTitles:nil];
     [alert show];
-
+    
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-   // [MBProgressHUD hideHUDForView:self.wWebView];
-  //  NSLog(@"load finished : %@",self.loadUrl);
+    // [MBProgressHUD hideHUDForView:self.wWebView];
+    //  NSLog(@"load finished : %@",self.loadUrl);
     [self refreshButtonsState];
 }
 
 -(void)btnClicked:(UIButton*)btn
 {
     switch (btn.tag) {
-        case 0:
+            case 0:
             [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[_loadURL componentsSeparatedByString:@" "] componentsJoinedByString:@""]]]];
             break;
-        case 1:
+            case 1:
             if (_webView.canGoBack) {
                 [_webView goBack];
             }
             
             break;
-        case 2:
+            case 2:
             if (_webView.canGoForward) {
                 [_webView goForward];
             }
             break;
-        case 3:
+            case 3:
             
             [_webView reload];
             break;
@@ -174,15 +174,15 @@
             } else {
                 // Fallback on earlier versions
             }
-
+            
             [self.view addSubview:_webView];
-             CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+            CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
             _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
             [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(@(rectStatus.size.height));
                 make.left.right.equalTo(self.view);
                 make.bottom.equalTo(@(-ToolBarHeight));
-            
+                
             }];
             
         }
@@ -201,20 +201,24 @@
 - (UIView *)toolBar {
     if (!_toolBar) {
         _toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - ToolBarHeight, self.view.frame.size.width, ToolBarHeight)];
-
+        
         _toolBar.backgroundColor = [UIColor clearColor];
         
         
-        NSArray * arr =@[@"首页-2",@"返回-2",@"更多-2",@"刷新-2"];
-        NSArray * selearr= @[@"首页",@"返回",@"更多",@"刷新"];
+        NSArray * arr =@[@"首页-2@2x",@"返回-2@2x",@"更多-2@2x",@"刷新-2@2x"];
+        NSArray * selearr= @[@"首页@2x",@"返回@2x",@"更多@2x",@"刷新@2x"];
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSURL *url =  [bundle URLForResource:@"DXAlert" withExtension:@"bundle"];
+        NSBundle *b = [NSBundle bundleWithURL:url];
         UIButton *lastBtn = nil;
+        
         for (int i =0 ;  i <4 ;i ++){
             UIButton * btn =[UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame =CGRectMake(self.view.frame.size.width/4 * i, 0 ,  self.view.frame.size.width/4,ToolBarHeight);
             btn.tag =i;
-            [btn setImage:[UIImage imageNamed:selearr [i]] forState:UIControlStateNormal];
-            [btn setImage:[UIImage imageNamed:arr [i]] forState:UIControlStateDisabled];
-           // btn.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
+            [btn setImage:[UIImage imageWithContentsOfFile:[b pathForResource:selearr[i] ofType:@"png"]] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:[b pathForResource:arr[i] ofType:@"png"]] forState:UIControlStateDisabled];
+            // btn.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
             [_toolBar addSubview:btn];
             
             [self.WebViewArray addObject:btn];
@@ -236,7 +240,7 @@
                 if (lastBtn) {
                     make.left.equalTo(lastBtn.mas_right);
                 }else {
-                  make.left.equalTo(@(0));
+                    make.left.equalTo(@(0));
                 }
                 
                 make.bottom.equalTo(@(0));
@@ -245,7 +249,7 @@
             lastBtn = btn;
         }
         [self refreshButtonsState];
-
+        
     }
     return _toolBar;
 }
@@ -257,7 +261,7 @@
                                          cancelButtonTitle:@"确定"
                                          otherButtonTitles:nil];
     [alert show];
-
+    
     completionHandler();
 }
 
@@ -276,13 +280,13 @@
     return  UIStatusBarStyleDefault;
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
