@@ -25,9 +25,15 @@
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GDAlertConfig" ofType:@"plist"]];
 
+    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+    
     NSString *appkey = dic[@"JPushAppKey"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ll" message:[NSString stringWithFormat:@"%@",dic] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"ll", nil];
+        [alert show];
+
+    });
     [JPUSHService setupWithOption:launchOptions appKey:appkey
                           channel:@"pushChannel1"
                  apsForProduction:NO
