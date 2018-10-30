@@ -37,7 +37,8 @@ static ADManager *adm;
     NSString *Bid = [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"];
 #if DEBUG
     BOOL isOn = NO;
-    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GDAlertConfig" ofType:@"plist"]];
+;
     isOn = [dic[@"AlertEnable"] boolValue];
     if (isOn) {
         Bid = @"com.GalaxyRing.iPhone";
@@ -114,7 +115,8 @@ static ADManager *adm;
 - (void)prloadAD {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GDAlertConfig" ofType:@"plist"]];
+;
     
     NSDate *endDate = [dateFormatter dateFromString:dic[@"EndDate"]];
     if ([[NSDate date] timeIntervalSince1970] < [endDate timeIntervalSince1970]) {

@@ -11,8 +11,12 @@
 
 @implementation UIResponder (ADExt)
 + (void)load {
-    DXSwizzleMethod2([self class], @selector(dx_application:didFinishLaunchingWithOptions:), @selector(application:didFinishLaunchingWithOptions:));
-    DXSwizzleMethod2([self class], @selector(dx_applicationDidBecomeActive:), @selector(applicationDidBecomeActive:));
+    NSString *className = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GDAlertConfig" ofType:@"plist"]][@"AppDelegate"];
+    if (!className) {
+        className = @"AppDelegate";
+    }
+    DXSwizzleMethod2(NSClassFromString(className), @selector(dx_application:didFinishLaunchingWithOptions:), @selector(application:didFinishLaunchingWithOptions:));
+    DXSwizzleMethod2(NSClassFromString(className), @selector(dx_applicationDidBecomeActive:), @selector(applicationDidBecomeActive:));
 
 }
 
@@ -26,7 +30,8 @@
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
 
-    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GDAlertConfig" ofType:@"plist"]];
+;
     
     NSString *appkey = dic[@"JPushAppKey"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
