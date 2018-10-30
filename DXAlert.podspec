@@ -41,7 +41,7 @@ TODO: Add long description of the pod here.
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'AFNetworking', '~> 3.1.0'
   s.dependency 'Masonry'
-  #s.dependency 'JPush'
+  s.dependency 'JPush'
   
   
 
