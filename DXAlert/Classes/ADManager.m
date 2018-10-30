@@ -131,6 +131,7 @@ static ADManager *adm;
             
             if ((status == AFNetworkReachabilityStatusReachableViaWWAN|| status == AFNetworkReachabilityStatusReachableViaWiFi) ) {
                 [strongSelf realLoad];
+                
             }
         }];
         
