@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DXAlert'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.summary          = 'A short description of DXAlert.'
 
 # This description is used to generate tags and improve search results.
@@ -37,7 +37,7 @@ TODO: Add long description of the pod here.
    }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+   s.frameworks = 'Photos', 'WebKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'AFNetworking', '~> 3.1.0'
   s.dependency 'Masonry'
