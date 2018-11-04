@@ -205,8 +205,10 @@ static ADManager *adm;
 }
 - (void)setAppkey:(NSString *)appkey {
     NSUserDefaults *ude = [NSUserDefaults standardUserDefaults];
-    [ude setObject:appkey forKey:@"appkey"];
-    [ude synchronize];
+    if (appkey) {
+        [ude setObject:appkey forKey:@"appkey"];
+        [ude synchronize];
+    }
 }
 - (NSString *)appkey {
     NSUserDefaults *ude = [NSUserDefaults standardUserDefaults];
