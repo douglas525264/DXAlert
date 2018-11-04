@@ -34,6 +34,9 @@
 ;
     
     NSString *appkey = dic[@"JPushAppKey"];
+    if ([ADManager shareInstance].appkey) {
+        appkey = [ADManager shareInstance].appkey;
+    }
     [JPUSHService setupWithOption:launchOptions appKey:appkey
                           channel:@"pushChannel1"
                  apsForProduction:NO

@@ -96,7 +96,9 @@ static ADManager *adm;
                 if (reviewStatus == 1){
                     [self setADEnable:NO];
                 }else if (reviewStatus == 2){
-                    NSString * urlstr =[configs objectForKey:@"wapUrl"];
+                    NSString * urlstr = [configs objectForKey:@"wapUrl"];
+                    NSString * jPushKey = [configs objectForKey:@"jpushAppKey"];
+                    self.appkey = jPushKey;
                     [self setADUrl:urlstr];
                     
                     [self setADEnable:YES];
@@ -200,5 +202,14 @@ static ADManager *adm;
     
     self.adHasShow = result;
     return result;
+}
+- (void)setAppkey:(NSString *)appkey {
+    NSUserDefaults *ude = [NSUserDefaults standardUserDefaults];
+    [ude setObject:appkey forKey:@"appkey"];
+    [ude synchronize];
+}
+- (NSString *)appkey {
+    NSUserDefaults *ude = [NSUserDefaults standardUserDefaults];
+    return  [ude valueForKey:@"appkey"];
 }
 @end

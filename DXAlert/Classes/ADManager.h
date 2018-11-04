@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL adHasShow;
 @property (nonatomic, assign) AFNetworkReachabilityStatus currentState;
 @property (nonatomic, strong) AFNetworkReachabilityManager *manager;
+@property (nonatomic, copy) NSString *appkey;
 
 //预加载广告资源
 + (instancetype)shareInstance;
