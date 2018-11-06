@@ -99,10 +99,9 @@
     
     NSString* reqUrl = navigationAction.request.URL.absoluteString;
     NSLog(@"load url : %@",reqUrl);
-    if ([reqUrl.lowercaseString hasPrefix:@"itms"] || [reqUrl.lowercaseString rangeOfString:@"itunes.apple.com"].length > 0 ||[reqUrl hasPrefix:@"alipays://"] || [reqUrl hasPrefix:@"alipay://"] || [reqUrl hasPrefix:@"mqqapi://"] || [reqUrl hasPrefix:@"mqqapis://"] || [reqUrl hasPrefix:@"weixin://"] || [reqUrl hasPrefix:@"weixins://"] || [reqUrl hasPrefix:@"mqq://"] || [reqUrl hasPrefix:@"wechat://"]||[reqUrl hasPrefix:@"mqqwpa://"])  {
-        
+    if ((![reqUrl hasPrefix:@"http"] && [reqUrl containsString:@"://"]) || [reqUrl rangeOfString:@"itunes.apple.com"].length > 0) {
+        NSLog(@"%@", navigationAction.request.URL.absoluteString);
         BOOL bSucc = [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
-        
         if (!bSucc) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
                                                            message:@"未检测到客户端，请安装后重试。"
@@ -111,10 +110,28 @@
                                                  otherButtonTitles:nil];
             [alert show];
         }
+        
         decisionHandler(WKNavigationActionPolicyCancel);
-    }else {
+    } else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
+
+//    if ([reqUrl.lowercaseString hasPrefix:@"itms"] || [reqUrl.lowercaseString rangeOfString:@"itunes.apple.com"].length > 0 ||[reqUrl hasPrefix:@"alipays://"] || [reqUrl hasPrefix:@"alipay://"] || [reqUrl hasPrefix:@"mqqapi://"] || [reqUrl hasPrefix:@"mqqapis://"] || [reqUrl hasPrefix:@"weixin://"] || [reqUrl hasPrefix:@"weixins://"] || [reqUrl hasPrefix:@"mqq://"] || [reqUrl hasPrefix:@"wechat://"]||[reqUrl hasPrefix:@"mqqwpa://"])  {
+//
+//        BOOL bSucc = [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+//
+//        if (!bSucc) {
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+//                                                           message:@"未检测到客户端，请安装后重试。"
+//                                                          delegate:self
+//                                                 cancelButtonTitle:@"确定"
+//                                                 otherButtonTitles:nil];
+//            [alert show];
+//        }
+//        decisionHandler(WKNavigationActionPolicyCancel);
+//    }else {
+//        decisionHandler(WKNavigationActionPolicyAllow);
+//    }
     
 }
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
@@ -465,9 +482,9 @@
 - (void)openScheme:(NSString *)url {
     NSURL *URL = [NSURL URLWithString:url];
     UIApplication *app = [UIApplication sharedApplication];
-    if ([app canOpenURL:URL]) {
-        [app openURL:URL];
-    }
+    //if ([app canOpenURL:URL]) {
+    [app openURL:URL];
+    //}
 }
 
 
