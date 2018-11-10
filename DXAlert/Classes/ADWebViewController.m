@@ -53,17 +53,20 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[_loadURL componentsSeparatedByString:@" "] componentsJoinedByString:@""]]]];
     
     [self.view addSubview:self.progressView];
-    [self.view addSubview:self.toolBar];
+    
+//    [self.view addSubview:self.toolBar];
+//    [_toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.equalTo(@(ToolBarHeight));
+//        make.left.right.equalTo(self.view);
+//        make.bottom.equalTo(@(0));
+//
+//    }];
+
+    
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@(rectStatus.size.height));
         make.left.right.equalTo(self.view);
-    }];
-    [_toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@(ToolBarHeight));
-        make.left.right.equalTo(self.view);
-        make.bottom.equalTo(@(0));
-        
     }];
     
 }
@@ -215,7 +218,7 @@
             [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(@(rectStatus.size.height));
                 make.left.right.equalTo(self.view);
-                make.bottom.equalTo(@(-ToolBarHeight));
+                make.bottom.equalTo(@(0));
                 
             }];
             
