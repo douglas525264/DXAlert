@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //预加载广告资源
 + (instancetype)shareInstance;
-- (void)prloadAD;
+- (BOOL)prloadAD;
 - (BOOL)adEnable;
 - (NSString *)getLoadURL;
 - (BOOL)showAD;
