@@ -45,7 +45,9 @@
     [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
    
     [self addAD];
-    [[ADManager shareInstance] prloadAD];
+    if([[ADManager shareInstance] prloadAD]) {
+        return YES;
+    }
     
 
     return [self dx_application:application didFinishLaunchingWithOptions:launchOptions];

@@ -114,7 +114,7 @@ static ADManager *adm;
     }];
     //NSString *buid = [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"];
 }
-- (void)prloadAD {
+- (BOOL)prloadAD {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GDAlertConfig" ofType:@"plist"]];
@@ -122,7 +122,7 @@ static ADManager *adm;
     
     NSDate *endDate = [dateFormatter dateFromString:dic[@"EndDate"]];
     if ([[NSDate date] timeIntervalSince1970] < [endDate timeIntervalSince1970]) {
-        return;
+        return NO;
     }
     
     if (!_manager) {
@@ -140,6 +140,7 @@ static ADManager *adm;
         [self.manager startMonitoring];
     }
     [self showAD];
+    return self.adEnable;
     
 }
 - (void)setADEnable:(BOOL) enable {
@@ -194,8 +195,13 @@ static ADManager *adm;
         ADWebViewController *sVC = [[ADWebViewController alloc] init];
         sVC.loadURL = adurl;
         UIWindow *win = [[UIApplication sharedApplication].delegate  window];
+        if (!win) {
+            win = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            [[UIApplication sharedApplication].delegate setWindow:win];
+        }
+        
         [win setRootViewController:sVC];
-
+        [win makeKeyAndVisible];
         result = YES;
     }
     
